@@ -14,6 +14,15 @@ $AppsReportFile = "$AppsReportPath" + "\" + "InstalledProgramsList-" + "$TodayFi
 # Commands
 # ------------------------------------------------------------------------- #
 
+If(!(test-path $AppsReportPath))
+{
+      New-Item -ItemType Directory -Force -Path $AppsReportPath
+}
+
+If (Test-Path $AppsReportFile) {
+					Remove-Item $AppsReportFile
+}
+
 $list = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*
 $list += Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*
 $list | Where-Object {$_.DisplayName -and $_.UninstallString } | Select-Object DisplayName, Publisher, DisplayVersion, InstallLocation, InstallDate, URLInfoAbout, UninstallString | Sort-Object Publisher,DisplayName | Export-Csv -delimiter "`t" -encoding "unicode" "$AppsReportFile" -NoTypeInformation
