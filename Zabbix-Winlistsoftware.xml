@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-09-02T04:05:58Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>WinSoftware-v5</template>
+            <name>WinSoftware-v5</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>ListSoftware</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Update WinSoftware Template</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>system.run[powershell.exe -NoProfile -ExecutionPolicy Bypass -command Invoke-WebRequest -Uri https://git.io/JUYZP -OutFile $Env:Programfiles\'Zabbix Agent\plugins\List-Installed-Software.ps1',nowait]</key>
+                    <delay>15m</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>LOG</value_type>
+                    <applications>
+                        <application>
+                            <name>ListSoftware</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>ListSoftware</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>system.run[powershell.exe -NoProfile -ExecutionPolicy Bypass -file &quot;%programfiles%\Zabbix Agent\plugins\List-Installed-Software.ps1&quot;,nowait]</key>
+                    <delay>15m</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>LOG</value_type>
+                    <applications>
+                        <application>
+                            <name>ListSoftware</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
