@@ -7,7 +7,7 @@
 $Today = Get-Date
 $TodayFile = get-date -f yyyy-MM-dd
 $AppsReportPath = "$Env:SystemDrive\IT"
-$AppsReportFile = "$AppsReportPath" + "\" + "InstalledProgramsList-" + "$TodayFile" + ".csv"
+$AppsReportFile = "$AppsReportPath" + "\" + "$env:computername" + "-InstalledProgramsList-" + "$TodayFile" + ".csv"
 
 
 # ------------------------------------------------------------------------- #
